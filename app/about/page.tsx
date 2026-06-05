@@ -1,4 +1,14 @@
 import React from "react";
+import Image from "next/image";
+
+const getInitials = (name: string) => {
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+};
 
 export default function AboutPage() {
   const values = [
@@ -41,10 +51,10 @@ export default function AboutPage() {
   ];
 
   const team = [
-    { name: "John Smith", role: "CEO & Founder", image: "JS" },
-    { name: "Sarah Johnson", role: "Chief Security Officer", image: "SJ" },
-    { name: "Michael Chen", role: "Head of Operations", image: "MC" },
-    { name: "Emily Davis", role: "Lead Security Analyst", image: "ED" },
+    { name: "Oluwole Sowunmi", role: "CEO & Founder", image: "/founder.jpeg" },
+    { name: "Chioma Anyanwu", role: "Digital Quality Controller", image: "/digital-quality.jpeg" },
+    { name: "Benjamin Dafosi", role: "Chief Compliance & People Officer", image: "/chief-compliance.jpeg" },
+
   ];
 
   return (
@@ -170,14 +180,24 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {team.map((member, index) => (
               <div
                 key={index}
                 className="text-center group"
               >
-                <div className="w-32 h-32 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full flex items-center justify-center text-white font-bold text-3xl mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  {member.image}
+                <div className="w-32 h-32 relative rounded-full overflow-hidden mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300 bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center text-white font-bold text-3xl">
+                  {member.image ? (
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      sizes="128px"
+                      className="object-cover"
+                    />
+                  ) : (
+                    <span>{getInitials(member.name)}</span>
+                  )}
                 </div>
                 <h3 className="text-xl font-bold text-blue-900 mb-1">
                   {member.name}
