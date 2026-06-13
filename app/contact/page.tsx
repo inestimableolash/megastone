@@ -31,46 +31,13 @@ export default function ContactPage() {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KEY_HERE";
-
-    if (accessKey === "YOUR_ACCESS_KEY_HERE") {
-      setSubmitStatus({
-        success: false,
-        message: "Please configure your NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY in your .env.local file.",
-      });
-      setIsSubmitting(false);
-      return;
-    }
-
-    const serviceLabels: Record<string, string> = {
-      "computer-security": "Computer Security",
-      "qa-testing": "Software Quality Assurance Testing",
-      "penetration-testing": "Penetration Testing",
-      "vulnerability-assessment": "Vulnerability Assessment",
-      "consulting": "Cybersecurity Consulting",
-      "data-recovery": "Data Recovery",
-      "other": "Other Services",
-    };
-
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Accept: "application/json",
         },
-        body: JSON.stringify({
-          access_key: accessKey,
-          subject: `New Contact Message from ${formData.name}`,
-          from_name: "Megastone Website",
-          replyto: formData.email,
-          "Full Name": formData.name,
-          "Email Address": formData.email,
-          "Company": formData.company || "Not Provided",
-          "Phone Number": formData.phone || "Not Provided",
-          "Service of Interest": serviceLabels[formData.service] || "None Selected",
-          "Message Details": formData.message,
-        }),
+        body: JSON.stringify(formData),
       });
 
       const result = await response.json();
