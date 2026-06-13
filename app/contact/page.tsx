@@ -88,8 +88,8 @@ export default function ContactPage() {
         </svg>
       ),
       title: "Email",
-      content: "info@megastone.com",
-      link: "mailto:info@megastone.com",
+      content: "info@megastonetech.com",
+      link: "mailto:info@megastonetech.com",
     },
     {
       icon: (
@@ -179,11 +179,10 @@ export default function ContactPage() {
 
               {submitStatus && (
                 <div
-                  className={`p-4 rounded-lg mb-6 text-sm font-medium transition-all duration-300 ${
-                    submitStatus.success
+                  className={`p-4 rounded-lg mb-6 text-sm font-medium transition-all duration-300 ${submitStatus.success
                       ? "bg-green-50 text-green-800 border border-green-200"
                       : "bg-red-50 text-red-800 border border-red-200"
-                  }`}
+                    }`}
                 >
                   {submitStatus.message}
                 </div>
