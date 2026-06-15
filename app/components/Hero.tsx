@@ -73,7 +73,7 @@ const Hero = () => {
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold text-white leading-tight"
               variants={itemVariants}
             >
-              Cyber Solutions For Your Security
+              Cybersecurity Solutions for Your Business
             </motion.h1>
             <motion.p
               className="text-white/90 mt-4 sm:mt-6 text-base sm:text-lg md:text-xl max-w-2xl mx-auto md:mx-0"
